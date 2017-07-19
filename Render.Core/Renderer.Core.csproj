@@ -100,7 +100,12 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="x64\avutil-55.dll" />
+    <Content Include="x64\swscale-4.dll" />
+    <Content Include="x86\avutil-55.dll" />
+    <Content Include="x86\swscale-4.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
