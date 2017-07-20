@@ -90,7 +90,7 @@ namespace SharpDX.WPF
                 if (texture != m_backBuffer)
                 {
                     // if it's from the private (SDX9ImageSource) D3D9 device, dispose of it
-                    if (m_backBuffer != null && m_backBuffer.Device.NativePointer == s_d3d9.Device.NativePointer)
+                    //if (m_backBuffer != null && m_backBuffer.Device.NativePointer == s_d3d9.Device.NativePointer)
                         toDelete = m_backBuffer;
                     m_backBuffer = texture;
                 }

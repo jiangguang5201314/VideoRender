@@ -81,7 +81,6 @@
     <Compile Include="Cameras\FirstPersonCamera.cs" />
     <Compile Include="Cameras\ModelViewerCamera.cs" />
     <Compile Include="ConstantBuffer.cs" />
-    <Compile Include="D3D11_2D1.cs" />
     <Compile Include="D2D1.cs" />
     <Compile Include="D3D11.cs" />
     <Compile Include="D3D.cs" />

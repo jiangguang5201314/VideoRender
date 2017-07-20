@@ -7,7 +7,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -17,6 +16,7 @@ using System.Runtime.InteropServices;
 using SharpDX.WPF;
 using SharpDX.Direct3D9;
 using SharpDX.Mathematics.Interop;
+using SharpDX.DirectWrite;
 
 namespace SampleApp
 {
@@ -28,17 +28,35 @@ namespace SampleApp
         FrameData yuvData;
         Timer timer; 
         int frameIndex;
-        D2D1 render;
+        Sprite sprite;
+        D3D9 render;
+        SharpDX.Direct3D9.Font font;
+        string displayText = "201111";
+        RawRectangle fontDimension;
         public MainWindow()
         {
             InitializeComponent();
-            render = new SharpDX.WPF.D2D1();
+            render = new SharpDX.WPF.D3D9();
             render.Rendering += Render_Rendering;
             dxRender.Renderer = render;
+            sprite = new Sprite(render.Device);
+            // Initialize the Font
+            FontDescription fontDescription = new FontDescription()
+            {
+                Height = 72,
+                Italic = false,
+                CharacterSet = FontCharacterSet.Ansi,
+                FaceName = "Arial",
+                MipLevels = 0,
+                OutputPrecision = FontPrecision.TrueType,
+                PitchAndFamily = FontPitchAndFamily.Default,
+                Quality = FontQuality.ClearType,
+                Weight =SharpDX.Direct3D9. FontWeight.Bold
+            };
 
-
-
-            solidColorBrush = new SharpDX.Direct2D1.SolidColorBrush(render.RenderTarget2D, new RawColor4(22, 22, 11, 0xff));
+              font = new SharpDX.Direct3D9.Font(render.Device, fontDescription);
+          
+            //  solidColorBrush = new SharpDX.Direct2D1.SolidColorBrush(render.RenderTarget2D, new RawColor4(22, 22, 11, 0xff));
 
             this.timer = new Timer();
             this.timer.Interval = 40;
@@ -51,7 +69,8 @@ namespace SampleApp
             try
             {
                 this.yuvData = FrameData.LoadData("yv12.dat");
-
+                  fontDimension = font.MeasureText(null, displayText, new SharpDX.Rectangle(0, 0, yuvData.FrameWidth, yuvData.FrameHeight), FontDrawFlags.Center | FontDrawFlags.VerticalCenter);
+           
                 if (!this.imageD3D.SetupSurface(RenderType.D3D,this.yuvData.FrameWidth, this.yuvData.FrameHeight, FrameFormat.YV12))
                 
                 {
@@ -70,16 +89,25 @@ namespace SampleApp
                 MessageBox.Show("加载数据文件失败"+ex.Message);
             }
         }
-        RawColor4 back = new RawColor4(0, 0, 0, 0xff);
-        SharpDX.Direct2D1.SolidColorBrush solidColorBrush;
-
-
+      
         private void Render_Rendering(object sender, DrawEventArgs e)
         {
-      
-            render.RenderTarget2D.Clear(back);
-            render.RenderTarget2D.DrawLine(new RawVector2(10, 10), new RawVector2(100, 100), solidColorBrush);
-           
+            //render.RenderTarget.LockRectangle()
+            //render.RenderTarget2D.Clear(back);
+            //render.RenderTarget2D.DrawLine(new RawVector2(10, 10), new RawVector2(100, 100), solidColorBrush);
+            var device = render.Device;
+            device.Clear(ClearFlags.Target, SharpDX.Color.Black, 1.0f, 0);
+            device.BeginScene(); 
+            fontDimension.Left =10;
+            fontDimension.Top =10;
+            fontDimension.Bottom =300;
+            fontDimension.Right = 300;//+= (int)xDir;
+            // Draw the text
+         
+            font.DrawText(null, displayText,10,10, SharpDX.Color.White);
+        
+            device.EndScene();
+            device.Present();
         }
 
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
