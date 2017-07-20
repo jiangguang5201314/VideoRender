@@ -3,6 +3,11 @@ using System.Windows.Media;
 
 namespace Renderer.Core
 {
+    public enum RenderType {
+        D3D,
+        WriteBitmap
+
+    }
     public interface IRenderSource : IDisposable
     {
         bool CheckFormat(FrameFormat format);

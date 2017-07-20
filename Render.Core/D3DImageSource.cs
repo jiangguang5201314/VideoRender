@@ -23,7 +23,7 @@ namespace Renderer.Core
         public static Format D3DFormatYV12 = D3DX.MakeFourCC((byte)'Y', (byte)'V', (byte)'1', (byte)'2'); 
         public static Format D3DFormatNV12 = D3DX.MakeFourCC((byte)'N', (byte)'V', (byte)'1', (byte)'2');
 
-        public static SharpDX.Mathematics.Interop.RawColorBGRA BlackColor = new SharpDX.Mathematics.Interop.RawColorBGRA( 0, 0, 0, 0xFF);
+        public static RawColorBGRA BlackColor = new RawColorBGRA( 0, 0, 0, 0xFF);
 
 
         #endregion
@@ -46,7 +46,6 @@ namespace Renderer.Core
         private Texture texture;
         private Surface textureSurface;
         private VertexBuffer vertexBuffer;
-        //private Surface renderTarget;
 
         private ShaderBytecode vertexShaderCode;
         private VertexShader vertexShader;
@@ -93,6 +92,7 @@ namespace Renderer.Core
 
             this.dummyWindow = new Form();
             this.hwnd = this.dummyWindow.Handle;
+           
         }
 
         #endregion
@@ -181,7 +181,7 @@ namespace Renderer.Core
 
                 this.StretchSurface();
 
-                this.CreateScene();
+               // this.CreateScene();
             }
 
             this.InvalidateImage();
@@ -195,7 +195,7 @@ namespace Renderer.Core
 
                 this.StretchSurface();
 
-                this.CreateScene();
+                //this.CreateScene();
             }
 
             this.InvalidateImage();
@@ -360,27 +360,22 @@ namespace Renderer.Core
                 Surface.CreateOffscreenPlain(this.device, width, height, format, Pool.Default);
 
             this.device.ColorFill(this.inputSurface, BlackColor);
-
-            this.SetImageSourceBackBuffer();
-
+            
+            this.SetImageSourceBackBuffer(); 
+           
             #endregion
         }
 
         private void ReleaseResource()
         {
             this.SafeRelease(this.inputSurface);
-
             this.SafeRelease(this.vertexShader);
             this.SafeRelease(this.vertexConstantTable);
             this.SafeRelease(this.pixelShader);
             this.SafeRelease(this.pixelShaderConstantTable);
-
-            this.SafeRelease(this.vertexBuffer);
-            
+            this.SafeRelease(this.vertexBuffer);            
             this.SafeRelease(this.texture);
             this.SafeRelease(this.textureSurface);
-            //this.SafeRelease(this.renderTarget);
-
             this.SafeRelease(this.device);
         }
 
@@ -393,12 +388,10 @@ namespace Renderer.Core
             presentParams.BackBufferWidth = width == 0 ? 1 : width;
             presentParams.BackBufferHeight = height == 0 ? 1 : height;
             presentParams.SwapEffect = SwapEffect.Discard;
-            //presentParams.Multisample = MultisampleType.NonMaskable;
             presentParams.PresentationInterval = PresentInterval.Immediate;
             presentParams.BackBufferFormat = this.displayMode.Format;
             presentParams.BackBufferCount = 1;
             presentParams.EnableAutoDepthStencil = false;
-
             return presentParams;
         }
 
@@ -490,7 +483,10 @@ namespace Renderer.Core
                     break;
             }
 
+
+            
             this.inputSurface.UnlockRectangle();
+           
         }
 
         private void FillBuffer(IntPtr yBuffer, IntPtr uBuffer, IntPtr vBuffer)
@@ -603,34 +599,31 @@ namespace Renderer.Core
                     #endregion
                     break;
             }
-
+            
             this.inputSurface.UnlockRectangle();
         }
-
-        private void StretchSurface()
+             private void StretchSurface()
         {
             this.device.ColorFill(this.textureSurface, BlackColor);
 
             this.device.StretchRectangle(this.inputSurface, this.textureSurface, TextureFilter.Linear);
         }
 
-        private void CreateScene()
-        {
-            this.device.Clear(ClearFlags.Target, BlackColor, 1.0f, 0);
-            this.device.BeginScene();
+        //private void CreateScene()
+        //{
+        //    this.device.Clear(ClearFlags.Target, BlackColor, 1.0f, 0);
+        //    this.device.BeginScene();
 
-            this.device.VertexFormat = CUSTOM_VERTEX;
-            this.device.VertexShader = this.vertexShader;
-            this.device.PixelShader = this.pixelShader;
+        //    this.device.VertexFormat = CUSTOM_VERTEX;
+        //    this.device.VertexShader = this.vertexShader;
+        //    this.device.PixelShader = this.pixelShader;
 
-            this.device.SetStreamSource(0, this.vertexBuffer, 0, Marshal.SizeOf(typeof(VERTEX)));
+        //    this.device.SetStreamSource(0, this.vertexBuffer, 0, Marshal.SizeOf(typeof(VERTEX)));
 
-            this.device.SetTexture(0, this.texture);
-
-            this.device.DrawPrimitives(PrimitiveType.TriangleFan, 0, 2);
-
-            this.device.EndScene();
-        }
+        //    this.device.SetTexture(0, this.texture);
+        //    this.device.DrawPrimitives(PrimitiveType.TriangleFan, 0, 2);           
+        //    this.device.EndScene();
+        //}
 
         private void Present()
         {
@@ -711,12 +704,10 @@ namespace Renderer.Core
             {
                 this.imageSource.Dispatcher.Invoke((Action)(() => this.SetImageSourceBackBuffer()));
                 return;
-            }
-
+            } 
             this.imageSource.Lock();
             this.imageSource.SetBackBuffer(D3DResourceType.IDirect3DSurface9, this.textureSurface.NativePointer);
-            this.imageSource.Unlock();
-
+            this.imageSource.Unlock(); 
             this.imageSourceRect = new Int32Rect(0, 0, this.imageSource.PixelWidth, this.imageSource.PixelHeight);
         }
 
@@ -741,6 +732,7 @@ namespace Renderer.Core
             }
             catch
             {
+                return;
             }
         }
 
@@ -754,15 +746,6 @@ namespace Renderer.Core
             return this.direct3D.CheckDeviceFormatConversion(this.adapterId, DeviceType.Hardware, d3dFormat, this.displayMode.Format);            
 
         }
-
-        private void GetWindowSize(IntPtr hwnd, out int width, out int height)
-        {
-            RECT rect = new RECT();
-            Interop.GetWindowRect(hwnd, ref rect);
-            height = rect.Bottom - rect.Top;
-            width = rect.Right - rect.Left;
-        }
-
         private static Format ConvertToD3D(FrameFormat format)
         {
             switch (format)
@@ -798,12 +781,7 @@ namespace Renderer.Core
                     throw new ArgumentException("Unknown pixel format", "format");
             }
         }
-
-        private static int GetArgb(byte a, byte r, byte g, byte b)
-        {
-            return a << 24 + r << 16 + g << 8 + b;
-        }
-
+        
         private static bool IsVistaOrBetter
         {
             get
@@ -859,6 +837,7 @@ namespace Renderer.Core
             }
             catch
             {
+                return;
             }
         }
 

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renderer.Core", "Render.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp", "SampleApp\SampleApp.csproj", "{28E83A0B-D610-4F85-B470-3545B2751D25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpDX.WPF", "SharpDX.WPF\SharpDX.WPF\SharpDX.WPF.csproj", "{587D723B-36B2-49E2-9018-E3ABD4B8BBA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{28E83A0B-D610-4F85-B470-3545B2751D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28E83A0B-D610-4F85-B470-3545B2751D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28E83A0B-D610-4F85-B470-3545B2751D25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{587D723B-36B2-49E2-9018-E3ABD4B8BBA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{587D723B-36B2-49E2-9018-E3ABD4B8BBA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{587D723B-36B2-49E2-9018-E3ABD4B8BBA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{587D723B-36B2-49E2-9018-E3ABD4B8BBA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

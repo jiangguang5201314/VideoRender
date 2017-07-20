@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using System.Timers;
 using Renderer.Core;
 using System.Runtime.InteropServices;
+using SharpDX.WPF;
+using SharpDX.Direct3D9;
+using SharpDX.Mathematics.Interop;
 
 namespace SampleApp
 {
@@ -23,21 +26,25 @@ namespace SampleApp
     public partial class MainWindow : Window
     {
         FrameData yuvData;
-        Timer timer;
-        WriteableBitmapSource wbSource;
-        D3DImageSource d3dSource;
+        Timer timer; 
         int frameIndex;
-
+        D2D1 render;
         public MainWindow()
         {
             InitializeComponent();
+            render = new SharpDX.WPF.D2D1();
+            render.Rendering += Render_Rendering;
+            dxRender.Renderer = render;
+
+
+
+            solidColorBrush = new SharpDX.Direct2D1.SolidColorBrush(render.RenderTarget2D, new RawColor4(22, 22, 11, 0xff));
 
             this.timer = new Timer();
             this.timer.Interval = 40;
             this.timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
 
-            this.d3dSource = new D3DImageSource();
-            this.wbSource = new WriteableBitmapSource();
+           
 
             this.frameIndex = 0;
 
@@ -45,21 +52,16 @@ namespace SampleApp
             {
                 this.yuvData = FrameData.LoadData("yv12.dat");
 
-                if (this.wbSource.SetupSurface(this.yuvData.FrameWidth, this.yuvData.FrameHeight, FrameFormat.YV12))
-                {
-                    this.imageWB.Source = this.wbSource.ImageSource;
-                }
-                else
+                if (!this.imageD3D.SetupSurface(RenderType.D3D,this.yuvData.FrameWidth, this.yuvData.FrameHeight, FrameFormat.YV12))
+                
                 {
                     MessageBox.Show("WriteableBitmapSource不支持该种帧格式：" + FrameFormat.YV12);
                 }
 
-                if (this.d3dSource.SetupSurface(this.yuvData.FrameWidth, this.yuvData.FrameHeight, FrameFormat.YV12))
+                if (!this.imageWB.SetupSurface(RenderType.WriteBitmap,this.yuvData.FrameWidth, this.yuvData.FrameHeight, FrameFormat.YV12))
                 {
-                    this.imageD3D.Source = this.d3dSource.ImageSource;
-                }
-                else
-                {
+                 
+             
                     MessageBox.Show("本机显卡不支持该种帧格式：" + FrameFormat.YV12);
                 }
             }
@@ -67,6 +69,17 @@ namespace SampleApp
             {
                 MessageBox.Show("加载数据文件失败"+ex.Message);
             }
+        }
+        RawColor4 back = new RawColor4(0, 0, 0, 0xff);
+        SharpDX.Direct2D1.SolidColorBrush solidColorBrush;
+
+
+        private void Render_Rendering(object sender, DrawEventArgs e)
+        {
+      
+            render.RenderTarget2D.Clear(back);
+            render.RenderTarget2D.DrawLine(new RawVector2(10, 10), new RawVector2(100, 100), solidColorBrush);
+           
         }
 
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -81,11 +94,11 @@ namespace SampleApp
                 try
                 {
                     IntPtr ptr = Marshal.UnsafeAddrOfPinnedArrayElement(this.yuvData.FrameBuffer, this.frameIndex * this.yuvData.FrameSize);
-                    this.wbSource.Render(ptr);
-                    this.d3dSource.Render(ptr);
+                    this.imageD3D.Display(ptr);
+                    this.imageWB.Display(ptr);
                 }
                 catch
-                {
+                { 
                 }
 
                 this.frameIndex++;
