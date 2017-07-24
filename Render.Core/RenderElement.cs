@@ -41,12 +41,12 @@ namespace Renderer.Core
         {
             if (!this.Dispatcher.CheckAccess())
             {
-                return (bool)this.Dispatcher.Invoke((Action)(() => this.SetupSurface(renderType,width, height, format)));
-               
+                return (bool)this.Dispatcher.Invoke((Action)(() => this.SetupSurface(renderType, width, height, format)));
+
             }
 
             this.CreateRenderer(renderType);
-          var ret=  this.render.SetupSurface(width, height, format);
+            var ret = this.render.SetupSurface(width, height, format);
             this.image.Source = this.render.ImageSource;
             return ret;
         }
@@ -143,7 +143,7 @@ namespace Renderer.Core
                 default:
                     break;
             }
-          
+
         }
 
         private void ReleaseRenderer()

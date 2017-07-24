@@ -65,7 +65,10 @@ namespace Renderer.Core
                 case FrameFormat.RGB16: // rgb565
                     this.frameSize = this.width * this.height * 2; // 每个像素2字节
                     break;
+                case FrameFormat.RGB24:
+                    this.frameSize = this.width * this.height * 3; // 每个像素3字节
 
+                    break;
                 case FrameFormat.RGB32:
                 case FrameFormat.ARGB32:
                     this.frameSize = this.width * this.height * 4; // 每个像素4字节

@@ -17,6 +17,7 @@ using SharpDX.WPF;
 using SharpDX.Direct3D9;
 using SharpDX.Mathematics.Interop;
 using SharpDX.DirectWrite;
+using Accord.Video.DirectShow;
 
 namespace SampleApp
 {
@@ -25,122 +26,59 @@ namespace SampleApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        FrameData yuvData;
-        Timer timer; 
-        int frameIndex;
-        Sprite sprite;
-        D3D9 render;
-        SharpDX.Direct3D9.Font font;
-        string displayText = "201111";
-        RawRectangle fontDimension;
+
+        WriteableBitmap rw;
+         VideoCaptureDevice device;
         public MainWindow()
         {
+
             InitializeComponent();
-            render = new SharpDX.WPF.D3D9();
-            render.Rendering += Render_Rendering;
-            dxRender.Renderer = render;
-            sprite = new Sprite(render.Device);
-            // Initialize the Font
-            FontDescription fontDescription = new FontDescription()
+            var frm = new VideoCaptureDeviceForm();
+            frm.ShowDialog();
+            device = frm.VideoDevice;
+            device.NewFrame += Device_NewFrame;
+            rec = new Int32Rect(0, 0, device.VideoResolution.FrameSize.Width, device.VideoResolution.FrameSize.Height);
+            rcsrc = new System.Drawing.Rectangle(0, 0, rec.Width, rec.Height);
+            
+
+
+        }
+
+         Int32Rect rec;
+        System.Drawing.Rectangle rcsrc;
+        private void Device_NewFrame(object sender, Accord.Video.NewFrameEventArgs eventArgs)
+        {
+            this.Dispatcher.Invoke(new Action(() =>
             {
-                Height = 72,
-                Italic = false,
-                CharacterSet = FontCharacterSet.Ansi,
-                FaceName = "Arial",
-                MipLevels = 0,
-                OutputPrecision = FontPrecision.TrueType,
-                PitchAndFamily = FontPitchAndFamily.Default,
-                Quality = FontQuality.ClearType,
-                Weight =SharpDX.Direct3D9. FontWeight.Bold
-            };
+                var ldata = eventArgs.Frame.LockBits(rcsrc, System.Drawing.Imaging.ImageLockMode.ReadOnly, eventArgs.Frame.PixelFormat);
 
-              font = new SharpDX.Direct3D9.Font(render.Device, fontDescription);
-          
-            //  solidColorBrush = new SharpDX.Direct2D1.SolidColorBrush(render.RenderTarget2D, new RawColor4(22, 22, 11, 0xff));
-
-            this.timer = new Timer();
-            this.timer.Interval = 40;
-            this.timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
-
-           
-
-            this.frameIndex = 0;
-
-            try
-            {
-                this.yuvData = FrameData.LoadData("yv12.dat");
-                  fontDimension = font.MeasureText(null, displayText, new SharpDX.Rectangle(0, 0, yuvData.FrameWidth, yuvData.FrameHeight), FontDrawFlags.Center | FontDrawFlags.VerticalCenter);
-           
-                if (!this.imageD3D.SetupSurface(RenderType.D3D,this.yuvData.FrameWidth, this.yuvData.FrameHeight, FrameFormat.YV12))
+                if (rw == null)
+                {
+                    rw = new WriteableBitmap(device.VideoResolution.FrameSize.Width, device.VideoResolution.FrameSize.Height, 96, 96, System.Windows.Media.PixelFormats.Bgr24, null);
+                //    imageD3D.SetupSurface(RenderType.D3D, eventArgs.Frame.Width, eventArgs.Frame.Height, FrameFormat.RGB32);
+                    imageWB.SetupSurface(RenderType.WriteBitmap, eventArgs.Frame.Width, eventArgs.Frame.Height, FrameFormat.RGB24);
+                    capture.Source = rw;
+                }
                 
-                {
-                    MessageBox.Show("WriteableBitmapSource不支持该种帧格式：" + FrameFormat.YV12);
-                }
+                rw.WritePixels(rec, ldata.Scan0, ldata.Stride * ldata.Height, rw.BackBufferStride);
+           //     imageD3D.Display(ldata.Scan0);
+                imageWB.Display(ldata.Scan0);
+                eventArgs.Frame.UnlockBits(ldata);
 
-                if (!this.imageWB.SetupSurface(RenderType.WriteBitmap,this.yuvData.FrameWidth, this.yuvData.FrameHeight, FrameFormat.YV12))
-                {
-                 
-             
-                    MessageBox.Show("本机显卡不支持该种帧格式：" + FrameFormat.YV12);
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("加载数据文件失败"+ex.Message);
-            }
-        }
-      
-        private void Render_Rendering(object sender, DrawEventArgs e)
-        {
-            //render.RenderTarget.LockRectangle()
-            //render.RenderTarget2D.Clear(back);
-            //render.RenderTarget2D.DrawLine(new RawVector2(10, 10), new RawVector2(100, 100), solidColorBrush);
-            var device = render.Device;
-            device.Clear(ClearFlags.Target, SharpDX.Color.Black, 1.0f, 0);
-            device.BeginScene(); 
-            fontDimension.Left =10;
-            fontDimension.Top =10;
-            fontDimension.Bottom =300;
-            fontDimension.Right = 300;//+= (int)xDir;
-            // Draw the text
-         
-            font.DrawText(null, displayText,10,10, SharpDX.Color.White);
-        
-            device.EndScene();
-            device.Present();
-        }
-
-        private void timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            if (this.yuvData != null)
-            {
-                if (this.frameIndex >= this.yuvData.Frames)
-                {
-                    this.frameIndex %= this.yuvData.Frames;
-                }
-
-                try
-                {
-                    IntPtr ptr = Marshal.UnsafeAddrOfPinnedArrayElement(this.yuvData.FrameBuffer, this.frameIndex * this.yuvData.FrameSize);
-                    this.imageD3D.Display(ptr);
-                    this.imageWB.Display(ptr);
-                }
-                catch
-                { 
-                }
-
-                this.frameIndex++;
-            }
+            })); 
         }
 
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
-            this.timer.Start();
+            device.Start();
         }
 
         private void buttonStop_Click(object sender, RoutedEventArgs e)
         {
-            this.timer.Stop();
+            device.SignalToStop();
+
         }
+
+        
     }
 }

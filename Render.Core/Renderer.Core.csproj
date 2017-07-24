@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -11,7 +11,8 @@
     <RootNamespace>Renderer.Core</RootNamespace>
     <AssemblyName>Renderer.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -21,11 +22,12 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET40</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,6 +37,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
@@ -50,6 +53,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -66,6 +70,140 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accord.Core\AForge.Core\Delegates.cs" />
+    <Compile Include="Accord.Core\AForge.Core\DoublePoint.cs" />
+    <Compile Include="Accord.Core\AForge.Core\EventArgs.cs" />
+    <Compile Include="Accord.Core\AForge.Core\Exceptions.cs" />
+    <Compile Include="Accord.Core\AForge.Core\IntPoint.cs" />
+    <Compile Include="Accord.Core\AForge.Core\Point.cs" />
+    <Compile Include="Accord.Core\AForge.Core\PolishExpression.cs" />
+    <Compile Include="Accord.Core\AForge.Core\SystemTools.cs" />
+    <Compile Include="Accord.Core\AForge.Core\ThreadSafeRandom.cs" />
+    <Compile Include="Accord.Core\Attributes\IntegerAttribute.cs" />
+    <Compile Include="Accord.Core\Attributes\RealAttribute.cs" />
+    <Compile Include="Accord.Core\Attributes\SerializationBinderAttribute.cs" />
+    <Compile Include="Accord.Core\Attributes\SourceTypeAttribute.cs" />
+    <Compile Include="Accord.Core\Cast.cs" />
+    <Compile Include="Accord.Core\Collections\BinaryNode.cs" />
+    <Compile Include="Accord.Core\Collections\BinaryTree.cs" />
+    <Compile Include="Accord.Core\Collections\KeyValuePairComparer`2.cs" />
+    <Compile Include="Accord.Core\Collections\PriorityQueue.cs" />
+    <Compile Include="Accord.Core\Collections\PriorityQueueNode.cs" />
+    <Compile Include="Accord.Core\Collections\ReadOnlyDictionary.cs" />
+    <Compile Include="Accord.Core\Collections\ReadOnlyKeyedCollection.cs" />
+    <Compile Include="Accord.Core\Collections\RedBlackTreeDictionary`2.cs" />
+    <Compile Include="Accord.Core\Collections\RedBlackTreeNode.cs" />
+    <Compile Include="Accord.Core\Collections\RedBlackTree`1.cs" />
+    <Compile Include="Accord.Core\Collections\RedBlackTree`2.cs" />
+    <Compile Include="Accord.Core\Collections\Tree.cs" />
+    <Compile Include="Accord.Core\Collections\TreeNode.cs" />
+    <Compile Include="Accord.Core\Collections\TreeTraversal.cs" />
+    <Compile Include="Accord.Core\Collections\TwoWayDictionary.cs" />
+    <Compile Include="Accord.Core\Compatibility\AggregateException.cs" />
+    <Compile Include="Accord.Core\Compatibility\CancellationToken.cs" />
+    <Compile Include="Accord.Core\Compatibility\Complex.cs" />
+    <Compile Include="Accord.Core\Compatibility\ConcurrentBag.cs" />
+    <Compile Include="Accord.Core\Compatibility\ConcurrentStack.cs" />
+    <Compile Include="Accord.Core\Compatibility\EnumerableEx.cs" />
+    <Compile Include="Accord.Core\Compatibility\IReadOnlyCollection.cs" />
+    <Compile Include="Accord.Core\Compatibility\IReadOnlyDictionary.cs" />
+    <Compile Include="Accord.Core\Compatibility\ISet.cs" />
+    <Compile Include="Accord.Core\Compatibility\Lazy.cs" />
+    <Compile Include="Accord.Core\Compatibility\Parallel.cs" />
+    <Compile Include="Accord.Core\Compatibility\SortedSet.cs" />
+    <Compile Include="Accord.Core\Compatibility\SpinLock.cs" />
+    <Compile Include="Accord.Core\Compatibility\Stream.cs" />
+    <Compile Include="Accord.Core\Compatibility\ThreadLocal.cs" />
+    <Compile Include="Accord.Core\Compatibility\Tuple.cs" />
+    <Compile Include="Accord.Core\Compatibility\TypeExtensions.cs" />
+    <Compile Include="Accord.Core\Debug.cs" />
+    <Compile Include="Accord.Core\Exceptions\ConvergenceException.cs" />
+    <Compile Include="Accord.Core\Exceptions\DimensionMismatchException.cs" />
+    <Compile Include="Accord.Core\Exceptions\NonPositiveDefiniteMatrixException.cs" />
+    <Compile Include="Accord.Core\Exceptions\NonSymmetricMatrixException.cs" />
+    <Compile Include="Accord.Core\Exceptions\SingularMatrixException.cs" />
+    <Compile Include="Accord.Core\ExtensionMethods.cs" />
+    <Compile Include="Accord.Core\GlobalSuppressions.cs" />
+    <Compile Include="Accord.Core\InterlockedEx.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\IClassifier.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\Multiclass\Binary\IBinaryClassifier.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\Multiclass\Binary\IBinaryLikelihoodClassifier.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\Multiclass\Binary\IBinaryScoreClassifier.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\Multiclass\IMulticlassClassifier.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\Multiclass\IMulticlassLikelihoodClassifier.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\Multiclass\IMulticlassScoreClassifier.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\Multilabel\IMultilabelClassifier.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\Multilabel\IMultilabelLikelihoodClassifier.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\Multilabel\IMultilabelScoreClassifier.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\Tagging\ILikelihoodTagger.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\Tagging\IScoreTagger.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Classifiers\Tagging\ITagger.cs" />
+    <Compile Include="Accord.Core\MachineLearning\IParallel.cs" />
+    <Compile Include="Accord.Core\MachineLearning\ITransform.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Regression\IMultipleRegression.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Regression\IRegression.cs" />
+    <Compile Include="Accord.Core\MachineLearning\Unsupervised\IGenerative.cs" />
+    <Compile Include="Accord.Core\Math\Rational.cs" />
+    <Compile Include="Accord.Core\Math\RationalConverter.cs" />
+    <Compile Include="Accord.Core\Ranges\ByteRange.cs" />
+    <Compile Include="Accord.Core\Ranges\DoubleRange.cs" />
+    <Compile Include="Accord.Core\Ranges\IntRange.cs" />
+    <Compile Include="Accord.Core\Ranges\IRange`1.cs" />
+    <Compile Include="Accord.Core\Ranges\Range.cs" />
+    <Compile Include="Accord.Core\Serializer.cs" />
+    <Compile Include="Accord.Core\Sparse.cs" />
+    <Compile Include="Accord.Core\Sparse`1.cs" />
+    <Compile Include="Accord.Video.DirectShow\CameraControlProperty.cs" />
+    <Compile Include="Accord.Video.DirectShow\FileVideoSource.cs" />
+    <Compile Include="Accord.Video.DirectShow\FilterInfo.cs" />
+    <Compile Include="Accord.Video.DirectShow\FilterInfoCollection.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IAMCameraControl.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IAMCrossbar.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IAMStreamConfig.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IAMVideoControl.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IBaseFilter.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\ICaptureGraphBuilder2.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\ICreateDevEnum.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IEnumFilters.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IEnumPins.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IFileSourceFilter.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IFilterGraph.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IFilterGraph2.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IGraphBuilder.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IMediaControl.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IMediaEventEx.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IMediaFilter.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IPersist.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IPin.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IPropertyBag.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IReferenceClock.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\ISampleGrabber.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\ISampleGrabberCB.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\ISpecifyPropertyPages.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\IVideoWindow.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\Structures.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\Tools.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\Uuids.cs" />
+    <Compile Include="Accord.Video.DirectShow\Internals\Win32.cs" />
+    <Compile Include="Accord.Video.DirectShow\PhysicalConnectorType.cs" />
+    <Compile Include="Accord.Video.DirectShow\Uuids.cs" />
+    <Compile Include="Accord.Video.DirectShow\VideoCapabilities.cs" />
+    <Compile Include="Accord.Video.DirectShow\VideoCaptureDevice.cs" />
+    <Compile Include="Accord.Video.DirectShow\VideoCaptureDeviceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accord.Video.DirectShow\VideoCaptureDeviceForm.Designer.cs">
+      <DependentUpon>VideoCaptureDeviceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accord.Video.DirectShow\VideoInput.cs" />
+    <Compile Include="Accord.Video\AsyncVideoSource.cs" />
+    <Compile Include="Accord.Video\ByteArrayUtils.cs" />
+    <Compile Include="Accord.Video\Exceptions.cs" />
+    <Compile Include="Accord.Video\IVideoSource.cs" />
+    <Compile Include="Accord.Video\JPEGStream.cs" />
+    <Compile Include="Accord.Video\MJPEGStream.cs" />
+    <Compile Include="Accord.Video\ScreenCaptureStream.cs" />
+    <Compile Include="Accord.Video\VideoEvents.cs" />
     <Compile Include="RenderElement.cs" />
     <Compile Include="FrameFormat.cs" />
     <Compile Include="Imaging\ConverterResizer.cs" />
@@ -90,15 +228,25 @@
     <Compile Include="D3DImageSource.cs" />
     <Compile Include="Vertex.cs" />
     <Compile Include="WriteableBitmapSource.cs" />
+    <EmbeddedResource Include="Accord.Video.DirectShow\VideoCaptureDeviceForm.resx">
+      <DependentUpon>VideoCaptureDeviceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Accord.Core\MachineLearning\Classifiers\Multiclass\Binary\Binary.cd" />
+    <None Include="Accord.Core\MachineLearning\Classifiers\Multiclass\Multiclass.cd" />
+    <None Include="Accord.Core\MachineLearning\Classifiers\Multilabel\Multilabel.cd" />
+    <None Include="Accord.Video.DirectShow\Accord.Video.DirectShow.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Accord.Video.DirectShow\Icons\camera.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
