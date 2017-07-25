@@ -13,10 +13,9 @@ using System.Windows.Shapes;
 using System.Timers;
 using Renderer.Core;
 using System.Runtime.InteropServices;
-using SharpDX.WPF;
+
 using SharpDX.Direct3D9;
 using SharpDX.Mathematics.Interop;
-using SharpDX.DirectWrite;
 using Accord.Video.DirectShow;
 
 namespace SampleApp
@@ -28,23 +27,28 @@ namespace SampleApp
     {
 
         WriteableBitmap rw;
-         VideoCaptureDevice device;
+        VideoCaptureDevice device;
         public MainWindow()
         {
 
             InitializeComponent();
             var frm = new VideoCaptureDeviceForm();
             frm.ShowDialog();
-            device = frm.VideoDevice;
+
+
+            device = new Accord.Video.DirectShow.VideoCaptureDevice(frm.VideoDevice.Source, System.Drawing.Imaging.PixelFormat.Format32bppRgb);
+            device.VideoResolution = frm.VideoDevice.VideoResolution;
+
             device.NewFrame += Device_NewFrame;
+            device.Start();
             rec = new Int32Rect(0, 0, device.VideoResolution.FrameSize.Width, device.VideoResolution.FrameSize.Height);
             rcsrc = new System.Drawing.Rectangle(0, 0, rec.Width, rec.Height);
-            
+
 
 
         }
 
-         Int32Rect rec;
+        Int32Rect rec;
         System.Drawing.Rectangle rcsrc;
         private void Device_NewFrame(object sender, Accord.Video.NewFrameEventArgs eventArgs)
         {
@@ -54,18 +58,18 @@ namespace SampleApp
 
                 if (rw == null)
                 {
-                    rw = new WriteableBitmap(device.VideoResolution.FrameSize.Width, device.VideoResolution.FrameSize.Height, 96, 96, System.Windows.Media.PixelFormats.Bgr24, null);
-                //    imageD3D.SetupSurface(RenderType.D3D, eventArgs.Frame.Width, eventArgs.Frame.Height, FrameFormat.RGB32);
-                    imageWB.SetupSurface(RenderType.WriteBitmap, eventArgs.Frame.Width, eventArgs.Frame.Height, FrameFormat.RGB24);
+                    rw = new WriteableBitmap(device.VideoResolution.FrameSize.Width, device.VideoResolution.FrameSize.Height, 96, 96, System.Windows.Media.PixelFormats.Bgr32, null);
+                    //    imageD3D.SetupSurface(RenderType.D3D, eventArgs.Frame.Width, eventArgs.Frame.Height, FrameFormat.RGB32);
+                    imageWB.SetupSurface(RenderType.WriteBitmap, eventArgs.Frame.Width, eventArgs.Frame.Height, FrameFormat.RGB32);
                     capture.Source = rw;
                 }
-                
+
                 rw.WritePixels(rec, ldata.Scan0, ldata.Stride * ldata.Height, rw.BackBufferStride);
-           //     imageD3D.Display(ldata.Scan0);
+                //     imageD3D.Display(ldata.Scan0);
                 imageWB.Display(ldata.Scan0);
                 eventArgs.Frame.UnlockBits(ldata);
 
-            })); 
+            }));
         }
 
         private void buttonStart_Click(object sender, RoutedEventArgs e)
@@ -76,9 +80,9 @@ namespace SampleApp
         private void buttonStop_Click(object sender, RoutedEventArgs e)
         {
             device.SignalToStop();
-
+            device.Stop();
         }
 
-        
+
     }
 }
