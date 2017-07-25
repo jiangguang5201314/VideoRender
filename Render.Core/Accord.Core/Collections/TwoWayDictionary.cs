@@ -30,7 +30,6 @@ namespace Accord.Collections
     using System.Collections;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
-    using System.Linq;
 
     /// <summary>
     ///   Two-way dictionary for efficient lookups by both key and value. This

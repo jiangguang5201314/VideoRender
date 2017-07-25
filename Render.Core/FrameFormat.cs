@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Renderer.Core
+﻿namespace Renderer.Core
 {
     // render 支持的帧类型
     public enum FrameFormat

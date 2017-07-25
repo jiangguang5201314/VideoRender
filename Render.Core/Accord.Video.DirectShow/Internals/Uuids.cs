@@ -1,8 +1,8 @@
 // AForge Direct Show Library
 // AForge.NET framework
-// http://www.aforgenet.com/framework/
+// http://www.aforgenet.com/framework/ 
 //
-// Copyright © AForge.NET, 2009-2013
+// Copyright ?AForge.NET, 2009-2013
 // contacts@aforgenet.com
 //
 

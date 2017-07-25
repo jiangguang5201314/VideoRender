@@ -23,7 +23,6 @@
 namespace Accord.Collections
 {
     using System;
-    using System.Text;
 
     /// <summary>
     ///   Tree node for binary trees.

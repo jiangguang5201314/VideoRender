@@ -1,6 +1,6 @@
 ﻿// AForge Core Library
 // AForge.NET framework
-// http://www.aforgenet.com/framework/
+// http://www.aforgenet.com/framework/ 
 //
 // Copyright © Andrew Kirillov, 2007-2009
 // andrew.kirillov@aforgenet.com

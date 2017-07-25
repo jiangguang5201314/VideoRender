@@ -23,7 +23,6 @@
 namespace Accord
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     ///   Specifies that an argument, in a method or function,

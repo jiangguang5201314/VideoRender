@@ -22,13 +22,6 @@
 
 namespace Accord.MachineLearning
 {
-    using Accord.MachineLearning;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     /// <summary>
     ///   Common interface for regression models. Regression models
     ///   learn how to produce a real value (or a set of real values) <c>y</c>

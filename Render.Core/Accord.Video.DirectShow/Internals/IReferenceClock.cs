@@ -1,8 +1,8 @@
 // AForge Direct Show Library
 // AForge.NET framework
-// http://www.aforgenet.com/framework/
+// http://www.aforgenet.com/framework/ 
 //
-// Copyright © Andrew Kirillov, 2010
+// Copyright ?Andrew Kirillov, 2010
 // andrew.kirillov@gmail.com
 //
 // Written by Jeremy Noring 

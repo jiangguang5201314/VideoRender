@@ -41,15 +41,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\3rdParty\SharpDX.dll</HintPath>
+      <HintPath>..\packages\SharpDX.4.0.1\lib\net40\SharpDX.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpDX.Direct3D9, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\3rdParty\SharpDX.Direct3D9.dll</HintPath>
+      <HintPath>..\packages\SharpDX.Direct3D9.4.0.1\lib\net40\SharpDX.Direct3D9.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpDX.Mathematics, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\3rdParty\SharpDX.Mathematics.dll</HintPath>
+      <HintPath>..\packages\SharpDX.Mathematics.4.0.1\lib\net40\SharpDX.Mathematics.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -238,7 +238,7 @@
     <None Include="Accord.Core\MachineLearning\Classifiers\Multiclass\Binary\Binary.cd" />
     <None Include="Accord.Core\MachineLearning\Classifiers\Multiclass\Multiclass.cd" />
     <None Include="Accord.Core\MachineLearning\Classifiers\Multilabel\Multilabel.cd" />
-    <None Include="Accord.Video.DirectShow\Accord.Video.DirectShow.cd" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

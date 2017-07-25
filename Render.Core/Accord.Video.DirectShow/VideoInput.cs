@@ -1,6 +1,6 @@
 ﻿// AForge Direct Show Library
 // AForge.NET framework
-// http://www.aforgenet.com/framework/
+// http://www.aforgenet.com/framework/ 
 //
 // Copyright © AForge.NET, 2009-2012
 // contacts@aforgenet.com
@@ -8,8 +8,6 @@
 
 namespace Accord.Video.DirectShow
 {
-    using System;
-
     /// <summary>
     /// Video input of a capture board.
     /// </summary>

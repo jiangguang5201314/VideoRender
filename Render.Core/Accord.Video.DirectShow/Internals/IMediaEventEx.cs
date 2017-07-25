@@ -1,5 +1,5 @@
 ﻿// AForge.NET framework
-// http://www.aforgenet.com/framework/
+// http://www.aforgenet.com/framework/ 
 //
 // Copyright © AForge.NET, 2009-2011
 // contacts@aforgenet.com

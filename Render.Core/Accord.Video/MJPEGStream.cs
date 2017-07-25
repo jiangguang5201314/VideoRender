@@ -1,20 +1,19 @@
 // AForge Video Library
 // AForge.NET framework
-// http://www.aforgenet.com/framework/
+// http://www.aforgenet.com/framework/ 
 //
-// Copyright © AForge.NET, 2005-2011
+// Copyright ?AForge.NET, 2005-2011
 // contacts@aforgenet.com
 //
 
 namespace Accord.Video
 {
-	using System;
-	using System.Drawing;
-	using System.IO;
-	using System.Text;
-	using System.Threading;
-	using System.Net;
-    using System.Security;
+    using System;
+    using System.Drawing;
+    using System.IO;
+    using System.Text;
+    using System.Threading;
+    using System.Net;
 
     /// <summary>
     /// MJPEG video source.

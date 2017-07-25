@@ -22,9 +22,6 @@
 
 namespace Accord.Collections
 {
-    using System;
-    using System.Text;
-
     /// <summary>
     ///   Tree node with arbitrary number of children.
     /// </summary>

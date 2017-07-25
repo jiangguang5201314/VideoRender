@@ -22,13 +22,6 @@
 
 namespace Accord.MachineLearning
 {
-    using Accord.MachineLearning;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     /// <summary>
     ///   Common interface for multiple regression models. Multiple regression
     ///   models learn how to produce a set of real values (a real-valued vector)

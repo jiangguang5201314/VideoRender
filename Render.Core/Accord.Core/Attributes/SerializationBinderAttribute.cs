@@ -22,9 +22,7 @@
 
 namespace Accord
 {
-    using Accord.IO;
     using System;
-    using System.ComponentModel.DataAnnotations;
     using System.Runtime.Serialization;
 
     /// <summary>

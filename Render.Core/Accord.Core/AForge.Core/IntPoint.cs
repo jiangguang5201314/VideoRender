@@ -1,6 +1,6 @@
 ﻿// AForge Core Library
 // AForge.NET framework
-// http://www.aforgenet.com/framework/
+// http://www.aforgenet.com/framework/ 
 //
 // Copyright © AForge.NET, 2007-2011
 // contacts@aforgenet.com
@@ -9,7 +9,6 @@
 namespace Accord
 {
     using System;
-    using System.ComponentModel;
 
     /// <summary>
     /// Structure for representing a pair of coordinates of integer type.

@@ -23,10 +23,6 @@
 #if NET35 || NET40
 namespace System.Reflection
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-
     internal static class TypeExtensions
     {
 

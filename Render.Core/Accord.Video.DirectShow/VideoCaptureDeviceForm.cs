@@ -1,6 +1,6 @@
 ﻿// AForge Direct Show Library
 // AForge.NET framework
-// http://www.aforgenet.com/framework/
+// http://www.aforgenet.com/framework/ 
 //
 // Copyright © AForge.NET, 2009-2013
 // contacts@aforgenet.com
@@ -10,12 +10,8 @@ namespace Accord.Video.DirectShow
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Drawing;
-    using System.Text;
     using System.Windows.Forms;
-
-    using Accord.Video.DirectShow;
 
     /// <summary>
     /// Local video device selection form.

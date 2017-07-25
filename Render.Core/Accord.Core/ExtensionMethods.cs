@@ -24,16 +24,13 @@ namespace Accord
 {
     using Accord.IO;
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
     using System.Globalization;
-    using System.Linq;
     using System.IO;
     using System.Reflection;
     using System.Runtime.InteropServices;
-    using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
 
     /// <summary>
