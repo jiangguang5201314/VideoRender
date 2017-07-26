@@ -160,6 +160,7 @@ namespace  Accord.Video.DirectShow
             {
                 // enumerate video devices
                 videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+               var videoDevices1 = new FilterInfoCollection(FilterCategory.AudioInputDevice);
 
                 if (videoDevices.Count == 0)
                     throw new ApplicationException();
