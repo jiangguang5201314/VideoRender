@@ -2,7 +2,7 @@
 // The Accord.NET Framework
 // http://accord-framework.net
 //
-// Copyright © César Souza, 2009-2017
+// Copyright ?César Souza, 2009-2017
 // cesarsouza at gmail.com
 //
 //    This library is free software; you can redistribute it and/or
@@ -20,7 +20,7 @@
 //    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 //
-// Copyright © AJ Richardson, 2015
+// Copyright ?AJ Richardson, 2015
 // https://github.com/aj-r/MathExtension
 //
 //    The MIT License(MIT)
@@ -46,7 +46,7 @@
 //    SOFTWARE.
 //
 
-namespace Accord.Math
+namespace  Accord.Math
 {
     using Converters;
     using System;

@@ -21,7 +21,7 @@
 //
 
 #if NET35 || NET40
-namespace Accord
+namespace  Accord
 {
     using System.Collections;
     using System.Collections.Generic;

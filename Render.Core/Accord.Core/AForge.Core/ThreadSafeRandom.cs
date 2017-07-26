@@ -6,7 +6,7 @@
 // contacts@aforgenet.com
 //
 
-namespace Accord
+namespace  Accord
 {
     using System;
 

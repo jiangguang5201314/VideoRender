@@ -46,7 +46,7 @@
 //    SOFTWARE.
 //
 
-namespace Accord.Math.Converters
+namespace  Accord.Math.Converters
 {
     using System;
     using System.ComponentModel;

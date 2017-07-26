@@ -24,7 +24,7 @@
 // https://github.com/Athari/Alba.Framework/blob/master/Alba.Framework/Collections/Collections/BiDictionary(TFirst%2CTSecond).cs
 //
 
-namespace Accord.Collections
+namespace  Accord.Collections
 {
     using System;
     using System.Collections;

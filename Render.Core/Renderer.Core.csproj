@@ -153,49 +153,49 @@
     <Compile Include="Accord.Core\Serializer.cs" />
     <Compile Include="Accord.Core\Sparse.cs" />
     <Compile Include="Accord.Core\Sparse`1.cs" />
-    <Compile Include="Accord.Video.DirectShow\CameraControlProperty.cs" />
-    <Compile Include="Accord.Video.DirectShow\FileVideoSource.cs" />
-    <Compile Include="Accord.Video.DirectShow\FilterInfo.cs" />
-    <Compile Include="Accord.Video.DirectShow\FilterInfoCollection.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IAMCameraControl.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IAMCrossbar.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IAMStreamConfig.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IAMVideoControl.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IBaseFilter.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\ICaptureGraphBuilder2.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\ICreateDevEnum.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IEnumFilters.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IEnumPins.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IFileSourceFilter.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IFilterGraph.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IFilterGraph2.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IGraphBuilder.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IMediaControl.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IMediaEventEx.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IMediaFilter.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IPersist.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IPin.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IPropertyBag.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IReferenceClock.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\ISampleGrabber.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\ISampleGrabberCB.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\ISpecifyPropertyPages.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\IVideoWindow.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\Structures.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\Tools.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\Uuids.cs" />
-    <Compile Include="Accord.Video.DirectShow\Internals\Win32.cs" />
-    <Compile Include="Accord.Video.DirectShow\PhysicalConnectorType.cs" />
-    <Compile Include="Accord.Video.DirectShow\Uuids.cs" />
-    <Compile Include="Accord.Video.DirectShow\VideoCapabilities.cs" />
-    <Compile Include="Accord.Video.DirectShow\VideoCaptureDevice.cs" />
-    <Compile Include="Accord.Video.DirectShow\VideoCaptureDeviceForm.cs">
+    <Compile Include="DirectShow\CameraControlProperty.cs" />
+    <Compile Include="DirectShow\FileVideoSource.cs" />
+    <Compile Include="DirectShow\FilterInfo.cs" />
+    <Compile Include="DirectShow\FilterInfoCollection.cs" />
+    <Compile Include="DirectShow\Internals\IAMCameraControl.cs" />
+    <Compile Include="DirectShow\Internals\IAMCrossbar.cs" />
+    <Compile Include="DirectShow\Internals\IAMStreamConfig.cs" />
+    <Compile Include="DirectShow\Internals\IAMVideoControl.cs" />
+    <Compile Include="DirectShow\Internals\IBaseFilter.cs" />
+    <Compile Include="DirectShow\Internals\ICaptureGraphBuilder2.cs" />
+    <Compile Include="DirectShow\Internals\ICreateDevEnum.cs" />
+    <Compile Include="DirectShow\Internals\IEnumFilters.cs" />
+    <Compile Include="DirectShow\Internals\IEnumPins.cs" />
+    <Compile Include="DirectShow\Internals\IFileSourceFilter.cs" />
+    <Compile Include="DirectShow\Internals\IFilterGraph.cs" />
+    <Compile Include="DirectShow\Internals\IFilterGraph2.cs" />
+    <Compile Include="DirectShow\Internals\IGraphBuilder.cs" />
+    <Compile Include="DirectShow\Internals\IMediaControl.cs" />
+    <Compile Include="DirectShow\Internals\IMediaEventEx.cs" />
+    <Compile Include="DirectShow\Internals\IMediaFilter.cs" />
+    <Compile Include="DirectShow\Internals\IPersist.cs" />
+    <Compile Include="DirectShow\Internals\IPin.cs" />
+    <Compile Include="DirectShow\Internals\IPropertyBag.cs" />
+    <Compile Include="DirectShow\Internals\IReferenceClock.cs" />
+    <Compile Include="DirectShow\Internals\ISampleGrabber.cs" />
+    <Compile Include="DirectShow\Internals\ISampleGrabberCB.cs" />
+    <Compile Include="DirectShow\Internals\ISpecifyPropertyPages.cs" />
+    <Compile Include="DirectShow\Internals\IVideoWindow.cs" />
+    <Compile Include="DirectShow\Internals\Structures.cs" />
+    <Compile Include="DirectShow\Internals\Tools.cs" />
+    <Compile Include="DirectShow\Internals\Uuids.cs" />
+    <Compile Include="DirectShow\Internals\Win32.cs" />
+    <Compile Include="DirectShow\PhysicalConnectorType.cs" />
+    <Compile Include="DirectShow\Uuids.cs" />
+    <Compile Include="DirectShow\VideoCapabilities.cs" />
+    <Compile Include="DirectShow\VideoCaptureDevice.cs" />
+    <Compile Include="DirectShow\VideoCaptureDeviceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Accord.Video.DirectShow\VideoCaptureDeviceForm.Designer.cs">
+    <Compile Include="DirectShow\VideoCaptureDeviceForm.Designer.cs">
       <DependentUpon>VideoCaptureDeviceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Accord.Video.DirectShow\VideoInput.cs" />
+    <Compile Include="DirectShow\VideoInput.cs" />
     <Compile Include="Accord.Video\AsyncVideoSource.cs" />
     <Compile Include="Accord.Video\ByteArrayUtils.cs" />
     <Compile Include="Accord.Video\Exceptions.cs" />
@@ -228,12 +228,13 @@
     <Compile Include="D3DImageSource.cs" />
     <Compile Include="Vertex.cs" />
     <Compile Include="WriteableBitmapSource.cs" />
-    <EmbeddedResource Include="Accord.Video.DirectShow\VideoCaptureDeviceForm.resx">
+    <EmbeddedResource Include="DirectShow\VideoCaptureDeviceForm.resx">
       <DependentUpon>VideoCaptureDeviceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Accord.Core\MachineLearning\Classifiers\Multiclass\Binary\Binary.cd" />
     <None Include="Accord.Core\MachineLearning\Classifiers\Multiclass\Multiclass.cd" />
@@ -246,7 +247,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Accord.Video.DirectShow\Icons\camera.png" />
+    <Resource Include="DirectShow\Icons\camera.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

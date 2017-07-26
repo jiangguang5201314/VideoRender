@@ -1,0 +1,6 @@
+
+LIBRARY	 D3DVideoRender.dll
+
+EXPORTS
+	D3D_Video_Render_Create     @1 NONAME
+	D3D_Video_Render_Destroy	   @2 NONAME

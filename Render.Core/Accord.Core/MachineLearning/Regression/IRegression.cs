@@ -20,7 +20,7 @@
 //    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
-namespace Accord.MachineLearning
+namespace  Accord.MachineLearning
 {
     /// <summary>
     ///   Common interface for regression models. Regression models

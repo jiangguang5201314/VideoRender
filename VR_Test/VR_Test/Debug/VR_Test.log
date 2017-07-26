@@ -1,0 +1,3 @@
+﻿stdafx.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/SAFESEH”规范)
+  VR_Test.vcxproj -> C:\Users\Light\Downloads\VR_Test\Debug\VR_Test.exe
+  VR_Test.vcxproj -> C:\Users\Light\Downloads\VR_Test\Debug\VR_Test.pdb (Full PDB)

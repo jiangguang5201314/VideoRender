@@ -21,7 +21,7 @@
 //
 
 #if NET35
-namespace Accord
+namespace  Accord
 {
     using System;
     using System.Threading;

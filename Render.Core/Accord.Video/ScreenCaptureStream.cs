@@ -9,7 +9,7 @@
 // cesarsouza@gmail.com
 //
 
-namespace Accord.Video
+namespace  Accord.Video
 {
     using System;
     using System.Drawing;

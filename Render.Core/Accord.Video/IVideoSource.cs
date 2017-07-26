@@ -6,7 +6,7 @@
 // andrew.kirillov@aforgenet.com
 //
 
-namespace Accord.Video
+namespace  Accord.Video
 {
     /// <summary>
     /// Video source interface.

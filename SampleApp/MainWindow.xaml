@@ -8,18 +8,18 @@
             <ColumnDefinition Width="251*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="55*" />
+            <RowDefinition Height="80*" />
             <RowDefinition Height="256*" />
             <RowDefinition Height="256*" />
         </Grid.RowDefinitions>
 
         <Grid Grid.ColumnSpan="2" Grid.Row="0" >
             <Button Content="Start" Height="23" HorizontalAlignment="Left" Margin="6,15,0,0" Name="buttonStart" VerticalAlignment="Top" Width="75" Click="buttonStart_Click" />
-            <Button Content="Stop" HorizontalAlignment="Left" Margin="95,15,0,-7" Name="buttonStop" Width="75" Click="buttonStop_Click" />
-        </Grid>
-       
+            <Button Content="Start" Height="23" HorizontalAlignment="Left" Margin="96,15,0,0" Name="buttonStop" VerticalAlignment="Top" Width="75" Click="buttonStop_Click" />
+            <Button Content="Copy" Height="23" HorizontalAlignment="Left" Margin="196,15,0,0" Name="buttonCopy" VerticalAlignment="Top" Width="75" Click="buttonCopy_Click" />
+ </Grid>
         <Core:RenderElement Grid.Column="0" Grid.Row="1" Name="imageD3D" Margin="5" />
         <Core:RenderElement Grid.Column="1" Grid.Row="1"  Name="imageWB" Margin="5"/>
-        <Image Grid.Column="0" Grid.Row="2" Name="capture" Margin="5"></Image>
+       
     </Grid>
 </Window>

@@ -89,8 +89,7 @@ namespace Renderer.Core
         public void Render(IntPtr buffer)
         {
             PlanarImage source = new PlanarImage(this.width, this.height, this.pixelType, buffer, this.frameSize);
-            PlanarImage image = this.converter.DoTheWork(source);
-
+            PlanarImage image = this.converter.DoTheWork(source); 
             this.DisplayImage(image);
         }
 

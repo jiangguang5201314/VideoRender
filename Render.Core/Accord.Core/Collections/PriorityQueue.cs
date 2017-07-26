@@ -50,7 +50,7 @@
 // free software LGPL license as stated in the beginning of this file.
 //
 
-namespace Accord.Collections
+namespace  Accord.Collections
 {
     using System;
     using System.Collections;

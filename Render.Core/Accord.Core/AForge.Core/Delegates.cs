@@ -6,7 +6,7 @@
 // contacts@aforgenet.com
 //
 
-namespace Accord
+namespace  Accord
 {
     /// <summary>
     /// A delegate which is used by events notifying abount sent/received message.

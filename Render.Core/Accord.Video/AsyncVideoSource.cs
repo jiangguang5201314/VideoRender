@@ -6,7 +6,7 @@
 // contacts@aforgenet.com
 //
 
-namespace Accord.Video
+namespace  Accord.Video
 {
     using System.Drawing;
     using System.Drawing.Imaging;

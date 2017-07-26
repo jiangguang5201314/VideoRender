@@ -1,0 +1,19 @@
+﻿  stdafx.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\include\afx.h(38): warning C4996: 'MBCS_Support_Deprecated_In_MFC': MBCS support in MFC is deprecated and may be removed in a future version of MFC.
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\include\afx.h(33): note: 参见“MBCS_Support_Deprecated_In_MFC”的声明
+  VR_Test.cpp
+c:\users\light\downloads\vr_test\vr_test\VR_TestDlg.h(48): warning C4244: “=”: 从“double”转换到“__int64”，可能丢失数据
+c:\users\light\downloads\vr_test\vr_test\VR_TestDlg.h(72): warning C4244: “初始化”: 从“__int64”转换到“long”，可能丢失数据
+  VR_TestDlg.cpp
+c:\users\light\downloads\vr_test\vr_test\VR_TestDlg.h(48): warning C4244: “=”: 从“double”转换到“__int64”，可能丢失数据
+c:\users\light\downloads\vr_test\vr_test\VR_TestDlg.h(72): warning C4244: “初始化”: 从“__int64”转换到“long”，可能丢失数据
+VR_TestDlg.cpp(396): warning C4244: “*=”: 从“float”转换到“LONG”，可能丢失数据
+VR_TestDlg.cpp(397): warning C4244: “*=”: 从“float”转换到“LONG”，可能丢失数据
+VR_TestDlg.cpp(457): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1189,5): warning MSB8012: TargetPath(C:\Users\Light\Downloads\VR_Test\Release\VR_Test.exe) does not match the Linker's OutputFile property value (C:\Users\Light\Downloads\VR_Test\VR_Test.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+  正在生成代码
+  All 229 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  VR_Test.vcxproj -> C:\Users\Light\Downloads\VR_Test\Release\VR_Test.exe
+  VR_Test.vcxproj -> C:\Users\Light\Downloads\VR_Test\Release\VR_Test.pdb (Full PDB)

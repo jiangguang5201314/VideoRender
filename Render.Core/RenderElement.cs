@@ -46,6 +46,8 @@ namespace Renderer.Core
             return ret;
         }
 
+        public ImageSource SourceImage { get { return render.ImageSource; } }
+
         public void Display(IntPtr bufferPtr)
         {
             this.render.Render(bufferPtr);

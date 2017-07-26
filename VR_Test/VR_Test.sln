@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VR_Test", "VR_Test\VR_Test.vcxproj", "{0078DDF7-C175-4C9E-9D62-E5D66B265F1F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D3DVideoRender", "D3DVideoRender\D3DVideoRender.vcxproj", "{AE85A4C2-513C-4DE5-8904-0621C981E165}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0078DDF7-C175-4C9E-9D62-E5D66B265F1F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0078DDF7-C175-4C9E-9D62-E5D66B265F1F}.Debug|Win32.Build.0 = Debug|Win32
+		{0078DDF7-C175-4C9E-9D62-E5D66B265F1F}.Release|Win32.ActiveCfg = Release|Win32
+		{0078DDF7-C175-4C9E-9D62-E5D66B265F1F}.Release|Win32.Build.0 = Release|Win32
+		{AE85A4C2-513C-4DE5-8904-0621C981E165}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AE85A4C2-513C-4DE5-8904-0621C981E165}.Debug|Win32.Build.0 = Debug|Win32
+		{AE85A4C2-513C-4DE5-8904-0621C981E165}.Release|Win32.ActiveCfg = Release|Win32
+		{AE85A4C2-513C-4DE5-8904-0621C981E165}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
