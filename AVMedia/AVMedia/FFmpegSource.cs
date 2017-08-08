@@ -8,11 +8,11 @@ namespace AVMedia
     using System.Runtime.InteropServices;
     using System.Threading;
 
-    
+
     /// <summary>
     /// FFmpeg Source 封装
     /// </summary>
-    public   class FFmpegSource : IVideoSource
+    public class FFmpegSource : IVideoSource
     {
 
         // frame interval in milliseconds
@@ -21,13 +21,27 @@ namespace AVMedia
         private Thread thread = null;
         private ManualResetEvent stopEvent = null;
         private Size displaySize;
-        static FFmpegSource()
+        static unsafe FFmpegSource()
         {
             ffmpeg.av_register_all();
             ffmpeg.avcodec_register_all();
             ffmpeg.avformat_network_init();
             ffmpeg.avdevice_register_all();
             ffmpeg.avfilter_register_all();
+
+            ffmpeg.av_log_set_level(ffmpeg.AV_LOG_VERBOSE);
+            av_log_set_callback_callback logCallback = (p0, level, format, vl) =>
+            {
+                if (level > ffmpeg.av_log_get_level()) return;
+
+                var lineSize = 1024;
+                var lineBuffer = stackalloc byte[lineSize];
+                var printPrefix = 1;
+                ffmpeg.av_log_format_line(p0, level, format, vl, lineBuffer, lineSize, &printPrefix);
+                var line = Marshal.PtrToStringAnsi((IntPtr)lineBuffer);
+                Console.Write(line);
+            };
+            ffmpeg.av_log_set_callback(logCallback);
         }
 
         /// <summary>
@@ -69,9 +83,6 @@ namespace AVMedia
         {
             get { return url; }
         }
-
-
-
 
         /// <summary>
         /// Received frames count.
@@ -118,14 +129,13 @@ namespace AVMedia
                     // check thread status
                     if (thread.Join(0) == false)
                         return true;
-
                     // the thread is not running, free resources
                     Free();
                 }
                 return false;
             }
         }
-        
+
         public FFmpegSource(string uri, Size size)
         {
             displaySize = size;
@@ -149,7 +159,6 @@ namespace AVMedia
 
                 // create events
                 stopEvent = new ManualResetEvent(false);
-
                 // create and start new thread
                 thread = new Thread(new ThreadStart(WorkerThread));
                 thread.Name = Source; // mainly for debugging
@@ -221,7 +230,6 @@ namespace AVMedia
         private void Free()
         {
             thread = null;
-
             // release events
             stopEvent.Close();
             stopEvent = null;
@@ -230,73 +238,48 @@ namespace AVMedia
         // Worker thread
         private unsafe void WorkerThread()
         {
-
-
-
-            Console.WriteLine($"FFmpeg version info: {ffmpeg.av_version_info()}");
-
-            // setup logging
-            ffmpeg.av_log_set_level(ffmpeg.AV_LOG_VERBOSE);
-            av_log_set_callback_callback logCallback = (p0, level, format, vl) =>
-            {
-                if (level > ffmpeg.av_log_get_level()) return;
-
-                var lineSize = 1024;
-                var lineBuffer = stackalloc byte[lineSize];
-                var printPrefix = 1;
-                ffmpeg.av_log_format_line(p0, level, format, vl, lineBuffer, lineSize, &printPrefix);
-                var line = Marshal.PtrToStringAnsi((IntPtr)lineBuffer);
-                Console.Write(line);
-            };
-            ffmpeg.av_log_set_callback(logCallback);
-
-            // decode N frames from url or path
-
-            //string url = @"../../sample_mpeg4.mp4";
-
+            //string url = @"../../sample_mpeg4.mp4"; 
             var pFormatContext = ffmpeg.avformat_alloc_context();
-
             if (ffmpeg.avformat_open_input(&pFormatContext, url, null, null) != 0)
+            {
                 throw new ApplicationException(@"Could not open file.");
+            }
 
             if (ffmpeg.avformat_find_stream_info(pFormatContext, null) != 0)
+            {
                 throw new ApplicationException(@"Could not find stream info");
-
+            }
             AVStream* pStream = null;
             for (var i = 0; i < pFormatContext->nb_streams; i++)
-                if (pFormatContext->streams[i]->codec->codec_type == AVMediaType.AVMEDIA_TYPE_VIDEO)
+            {
+                if (pFormatContext->streams[i]->codecpar->codec_type == AVMediaType.AVMEDIA_TYPE_VIDEO)
                 {
                     pStream = pFormatContext->streams[i];
                     break;
                 }
+            }
             if (pStream == null)
+            {
                 throw new ApplicationException(@"Could not found video stream.");
-
-
+            }
             var codecContext = *pStream->codec;
-
-            Console.WriteLine($"codec name: {ffmpeg.avcodec_get_name(codecContext.codec_id)}");
-
-            var width = codecContext.width;
-            var height = codecContext.height;
-            var sourcePixFmt = codecContext.pix_fmt;
-            var codecId = codecContext.codec_id;
-
+            var codecId = codecContext.codec_id; 
 
             var pCodec = ffmpeg.avcodec_find_decoder(codecId);
             if (pCodec == null)
+            {
                 throw new ApplicationException(@"Unsupported codec.");
-
+            }
             var pCodecContext = &codecContext;
 
-            if ((pCodec->capabilities & ffmpeg.AV_CODEC_CAP_TRUNCATED) == ffmpeg.AV_CODEC_CAP_TRUNCATED)
+            if ((pCodec->capabilities & ffmpeg.AV_CODEC_CAP_TRUNCATED) == ffmpeg.AV_CODEC_CAP_TRUNCATED) { 
                 pCodecContext->flags |= ffmpeg.AV_CODEC_FLAG_TRUNCATED;
-
-            if (ffmpeg.avcodec_open2(pCodecContext, pCodec, null) < 0)
+            }
+            if (ffmpeg.avcodec_open2(pCodecContext, pCodec, null) < 0) { 
                 throw new ApplicationException(@"Could not open codec.");
+            }
 
-            var pDecodedFrame = ffmpeg.av_frame_alloc();
-
+            var pDecodedFrame = ffmpeg.av_frame_alloc(); 
             var packet = new AVPacket();
             var pPacket = &packet;
             ffmpeg.av_init_packet(pPacket);
@@ -305,7 +288,6 @@ namespace AVMedia
             filter.AddLogo("logo.png");
             filter.AddText("麦迪科技", 10, 10);
             filter.Build();
-          
             while (!stopEvent.WaitOne(0, false))
             {
                 try
@@ -346,7 +328,7 @@ namespace AVMedia
                         VideoSourceError(this, new VideoSourceErrorEventArgs(exception.Message));
                     }
                     // wait for a while before the next try
-                    Thread.Sleep(250);
+                    Thread.Sleep(10);
                 }
                 finally
                 {
@@ -356,7 +338,7 @@ namespace AVMedia
                 // need to stop ?
                 if (stopEvent.WaitOne(0, false))
                     break;
-            } 
+            }
             ffmpeg.av_free(pDecodedFrame);
             ffmpeg.avcodec_close(pCodecContext);
             ffmpeg.avformat_close_input(&pFormatContext);
