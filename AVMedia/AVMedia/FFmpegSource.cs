@@ -20,7 +20,23 @@ namespace AVMedia
         private int framesReceived;
         private Thread thread = null;
         private ManualResetEvent stopEvent = null;
+        //视频输出大小
         private Size displaySize;
+        //视频源大小
+        private Size sourceSize;
+
+        static av_log_set_callback_callback logCallback;
+
+        static unsafe void logCall(void* p0, int level, [MarshalAs(UnmanagedType.LPStr)] string format, byte* vl) {
+            if (level > ffmpeg.av_log_get_level()) return;
+
+            var lineSize = 1024;
+            var lineBuffer = stackalloc byte[lineSize];
+            var printPrefix = 1;
+            ffmpeg.av_log_format_line(p0, level, format, vl, lineBuffer, lineSize, &printPrefix);
+            var line = Marshal.PtrToStringAnsi((IntPtr)lineBuffer);
+            Console.Write(line);
+        }
         static unsafe FFmpegSource()
         {
             ffmpeg.av_register_all();
@@ -30,17 +46,7 @@ namespace AVMedia
             ffmpeg.avfilter_register_all();
 
             ffmpeg.av_log_set_level(ffmpeg.AV_LOG_VERBOSE);
-            av_log_set_callback_callback logCallback = (p0, level, format, vl) =>
-            {
-                if (level > ffmpeg.av_log_get_level()) return;
-
-                var lineSize = 1024;
-                var lineBuffer = stackalloc byte[lineSize];
-                var printPrefix = 1;
-                ffmpeg.av_log_format_line(p0, level, format, vl, lineBuffer, lineSize, &printPrefix);
-                var line = Marshal.PtrToStringAnsi((IntPtr)lineBuffer);
-                Console.Write(line);
-            };
+            logCallback = new av_log_set_callback_callback(logCall);
             ffmpeg.av_log_set_callback(logCallback);
         }
 
@@ -135,11 +141,41 @@ namespace AVMedia
                 return false;
             }
         }
-
-        public FFmpegSource(string uri, Size size)
+        /// <summary>
+        /// 输出大小
+        /// </summary>
+        public Size DisplaySize
         {
-            displaySize = size;
-            this.url = uri;
+            get
+            {
+                return displaySize;
+            }
+
+            set
+            {
+                displaySize = value;
+            }
+        }
+        /// <summary>
+        /// 输入源大小
+        /// </summary>
+        public Size SourceSize
+        {
+            get
+            {
+                return sourceSize;
+            }
+
+            set
+            {
+                sourceSize = value;
+            }
+        }
+
+        public FFmpegSource()
+        {
+            displaySize.Width = 640;
+            displaySize.Height = 360;
         }
         /// <summary>
         /// Start video source.
@@ -238,7 +274,7 @@ namespace AVMedia
         // Worker thread
         private unsafe void WorkerThread()
         {
-            //string url = @"../../sample_mpeg4.mp4"; 
+             
             var pFormatContext = ffmpeg.avformat_alloc_context();
             if (ffmpeg.avformat_open_input(&pFormatContext, url, null, null) != 0)
             {
@@ -283,7 +319,7 @@ namespace AVMedia
             var packet = new AVPacket();
             var pPacket = &packet;
             ffmpeg.av_init_packet(pPacket);
-            var filter = new FFmpegFilter(pStream, displaySize);
+            var filter = new FFmpegFilter(pStream, DisplaySize);
             var frameNumber = 0;
             filter.AddLogo("logo.png");
             filter.AddText("麦迪科技", 10, 10);

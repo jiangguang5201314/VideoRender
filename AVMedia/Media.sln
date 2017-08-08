@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVMedia", "AVMedia\AVMedia.csproj", "{CD9A9D1A-FC49-4DD9-91C9-70C4813F4C14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{DCE9AE4F-68B9-4666-9E98-03D969D12041}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CD9A9D1A-FC49-4DD9-91C9-70C4813F4C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD9A9D1A-FC49-4DD9-91C9-70C4813F4C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD9A9D1A-FC49-4DD9-91C9-70C4813F4C14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCE9AE4F-68B9-4666-9E98-03D969D12041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE9AE4F-68B9-4666-9E98-03D969D12041}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCE9AE4F-68B9-4666-9E98-03D969D12041}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCE9AE4F-68B9-4666-9E98-03D969D12041}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
