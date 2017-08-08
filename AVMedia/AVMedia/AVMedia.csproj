@@ -38,16 +38,16 @@
     <NoWarn>CS0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Accord, Version=3.6.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.3.6.0\lib\net40\Accord.dll</HintPath>
+    <Reference Include="Accord">
+      <HintPath>..\packages\Accord.3.6.0\lib\net40\Accord.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Accord.Video, Version=3.6.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.Video.3.6.0\lib\net40\Accord.Video.dll</HintPath>
+    <Reference Include="Accord.Video">
+      <HintPath>..\packages\Accord.Video.3.6.0\lib\net40\Accord.Video.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Accord.Video.DirectShow, Version=3.6.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
-      <HintPath>packages\Accord.Video.DirectShow.3.6.0\lib\net40\Accord.Video.DirectShow.dll</HintPath>
+    <Reference Include="Accord.Video.DirectShow">
+      <HintPath>..\packages\Accord.Video.DirectShow.3.6.0\lib\net40\Accord.Video.DirectShow.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -75,7 +75,7 @@
     <Compile Include="FFmpeg\FFmpeg.macros.g.cs" />
     <Compile Include="FFmpeg\FFmpeg.structs.g.cs" />
     <Compile Include="FFmpeg\FFmpeg.structs.incomplete.g.cs" />
-    <Compile Include="FFAVFilter.cs" />
+    <Compile Include="FFmpegFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,6 +96,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -103,18 +104,11 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="packages\Accord.3.6.0\build\Accord.targets" Condition="Exists('packages\Accord.3.6.0\build\Accord.targets')" />
+  <Import Project="..\packages\Accord.3.6.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.6.0\build\Accord.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\Accord.3.6.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Accord.3.6.0\build\Accord.targets'))" />
+    <Error Condition="!Exists('..\packages\Accord.3.6.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.6.0\build\Accord.targets'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

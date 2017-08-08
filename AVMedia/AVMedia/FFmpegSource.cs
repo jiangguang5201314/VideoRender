@@ -300,7 +300,7 @@ namespace AVMedia
             var packet = new AVPacket();
             var pPacket = &packet;
             ffmpeg.av_init_packet(pPacket);
-            var filter = new FFAVFilter(pStream, displaySize);
+            var filter = new FFmpegFilter(pStream, displaySize);
             var frameNumber = 0;
             filter.AddLogo("logo.png");
             filter.AddText("麦迪科技", 10, 10);

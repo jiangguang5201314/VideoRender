@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace AVMedia
 {
-    public unsafe class FFAVFilter
+    public unsafe class FFmpegFilter
     {
         int filterLen;
         AVFilterContext* lastFilter = null;
@@ -16,7 +16,7 @@ namespace AVMedia
 
         int convertedFrameBufferSize;
         IntPtr convertedFrameBufferPtr;
-        public FFAVFilter(AVStream* stream, System.Drawing.Size vsize)
+        public FFmpegFilter(AVStream* stream, System.Drawing.Size vsize)
         {
             var p = stream->codecpar;
             var frate = stream->r_frame_rate;
